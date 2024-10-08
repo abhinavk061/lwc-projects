@@ -1,0 +1,87 @@
+<template>
+    <div class="app slds-p-around_small">
+        <div class="box">
+            <h1 class="slds-m-bottom_large">BMI Calculator</h1>
+
+            <!-- If result has some value then show the caculation -->
+            <template if:true={result}>
+                <section class="slds-m-bottom_medium">
+                    <!-- Display BMI after calculation -->
+                    <div>
+                        <h2>Your BMI is</h2>
+                        <p style="font-weight: bold; text-decoration: underline;">{bmiValue}</p>
+                    </div>
+
+
+                    <!-- Display result after calculation -->
+                    <div class="slds-m-bottom_medium">
+                        <h2>So you are</h2>
+                        <p style="font-weight: bold; text-decoration: underline;">{result}</p>
+                    </div>
+
+                    <!-- Recalculate button -->
+                    <button class="slds-button slds-button_neutral slds-button_stretch"
+                        onclick={reCalculate}>Re-calculate</button>
+                </section>
+            </template>
+
+            <!-- Show the form only if there is no result yet calculated -->
+            <template if:false={result}>
+
+                <form class="slds-m-bottom_large" onsubmit={submitHandler}>
+                    <!-- Form content will come here -->
+
+                    <!-- Enter height -->
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="text-input-id-48">
+                            Height (Cm)
+                        </label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="0" id="text-input-id-48" placeholder="Enter your height in cm"
+                                required="" class="slds-input" name="height" value={height} onchange={inputHandler} />
+                        </div>
+                    </div>
+
+                    <!-- Enter weight -->
+                    <div class="slds-form-element slds-m-bottom_medium">
+                        <label class="slds-form-element__label" for="text-input-id-49">
+                            Weight (Kg)
+                        </label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="0" id="text-input-id-49" placeholder="Enter your weight in kg"
+                                required="" class="slds-input" name="weight" value={weight} onchange={inputHandler} />
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button class="slds-button slds-button_neutral slds-button_stretch">Calculate</button>
+
+                </form>
+            </template>
+
+
+            <div class="info-wrapper">
+                <div class="slds-m-bottom_medium">
+                    <h2>What your BMI means?</h2>
+                    <p>Once you have measured your BMI, You can determine your healthy weight range. If BMI is</p>
+                </div>
+                <div class="slds-m-bottom_medium">
+                    <h3>Under 18.5</h3>
+                    <p>You are underweight and possibly malnourished.</p>
+                </div>
+                <div class="slds-m-bottom_medium">
+                    <h3 style="color: green;">Between 18.5 and 24.9</h3>
+                    <p>You have a healthy weight range for young and middle age adults.</p>
+                </div>
+                <div class="slds-m-bottom_medium">
+                    <h3>25 to 29.9</h3>
+                    <p>You are overweight.</p>
+                </div>
+                <div>
+                    <h3>Over 30</h3>
+                    <p>You are obese.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
